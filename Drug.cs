@@ -2,20 +2,13 @@ namespace DrugFinder
 {
   class Drug
   {
-    public Drug(string name, int scoreA, int scoreB, int scoreC, int scoreD)
+    public Drug(string name, int[] scores)
     {
       Name = name;
-      ScoreA = scoreA;
-      ScoreB = scoreB;
-      ScoreC = scoreC;
-      ScoreD = scoreD;
+      Scores = scores;
     }
 
     public string Name { get; set; }
-    public int ScoreA { get; set; }
-    public int ScoreB { get; set; }
-    public int ScoreC { get; set; }
-    public int ScoreD { get; set; }
-
+    public int[] Scores { get; set; }
   }
 }

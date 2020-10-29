@@ -4,29 +4,26 @@ namespace DrugFinder
 {
   class Question
   {
-    public Question()
-    {
-      ChildQuestionList = new List<Question>();
-    }
-
-    public List<Question> ChildQuestionList { get; set; }
     public string Title { get; set; }
     public int[,] ResponseScores { get; set; }
     public int Response { get; set; }
 
+    // This method exports the scores
     public void ExportScores()
     {
       if (Response == 0)
       {
-        Program.TotalDrugEffectScoreA += ResponseScores[0,0];
-        Program.TotalDrugEffectScoreB += ResponseScores[0,1];
-        Program.TotalDrugEffectScoreC += ResponseScores[0,2];
-        Program.TotalDrugEffectScoreD += ResponseScores[0,3];
-      } else if (Response == 1) {
-        Program.TotalDrugEffectScoreA += ResponseScores[1,0];
-        Program.TotalDrugEffectScoreB += ResponseScores[1,1];
-        Program.TotalDrugEffectScoreC += ResponseScores[1,2];
-        Program.TotalDrugEffectScoreD += ResponseScores[1,3];        
+        for (int i=0; i<8; i++)
+        {
+          Program.PatientVariableTotals[i] += ResponseScores[0,i];
+        }
+      } 
+      else if (Response == 1) 
+      {
+        for (int i=0; i<8; i++)
+        {
+          Program.PatientVariableTotals[i] += ResponseScores[1,i];
+        }      
       }
     }
   }
