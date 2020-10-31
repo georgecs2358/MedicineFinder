@@ -8,6 +8,20 @@ namespace DrugFinder
     public int[,] ResponseScores { get; set; }
     public int Response { get; set; }
 
+    // This check that the user entered a valid response to this question
+    // TODO: Check this against a specific property of the question
+    public bool ValidateResponse(int response)
+    {
+      if (response > 0 && response < 5)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
+
     // This method exports the scores
     public void ExportScores()
     {

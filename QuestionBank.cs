@@ -2,9 +2,9 @@ using System.Collections.Generic;
 
 namespace DrugFinder
 {
-  class QuestionTree
+  class QuestionBank
   {
-    public QuestionTree()
+    public QuestionBank()
     {
       Questions = new List<Question>();
 
@@ -86,14 +86,17 @@ namespace DrugFinder
         },
         Response=0
       });
+    }
+    
+    public List<Question> Questions { get; set; }
 
-      // This code will be run once all questions have been asked
+    // This code will be run once all questions have been asked
+    public void CalculateScores()
+    {
       for (int i=0; i<Questions.Count; i++)
       {
-        Program.NumberQuestionsUsed++;
         Questions[i].ExportScores();
       }
     }
-    public List<Question> Questions { get; set; }
   }
 }

@@ -4,8 +4,6 @@ namespace DrugFinder
 {
   class Program
   {
-    public static Drug[] Drugs { get; set; } = new Drug[4];
-
     // Represents the patient's desired score for:
     // [0] Progression-free survival
     // [1] Time to treatment failure
@@ -17,13 +15,36 @@ namespace DrugFinder
     // [7] Acne, diarrohea, sore mouth, sore nails
     public static int[] PatientVariableTotals { get; set; } = new int[8];
 
+    private static Drug[] Drugs = new Drug[4];
+
+    // An object which stores a list of questions, exports the response of these
+    // questions
+    private static QuestionBank QuestionBank;
+
     // The total number of questions asked, used to correctly compare the
     // patient's scores with the scientific score for each drug
-    public static int NumberQuestionsUsed { get; set; }
+    private static int NumberAsked = 0;
 
     static void Main(string[] args)
     {
       Initialise();
+
+      while (NumberAsked < 10)
+      {
+        Console.WriteLine(QuestionBank.Questions[NumberAsked].Title);
+        Console.WriteLine("Please enter (1) option1, (2) option(2)");
+
+        int response;
+        do {
+          response = Convert.ToInt32(Console.ReadKey());
+          QuestionBank.Questions[NumberAsked].Response = response;
+        } while (
+          !QuestionBank.Questions[NumberAsked].ValidateResponse(response)
+        );
+        NumberAsked++;
+      }
+
+      QuestionBank.CalculateScores();
 
       Console.Write("\n---------------------------------------------------\n");
       Console.WriteLine(
@@ -36,7 +57,7 @@ namespace DrugFinder
     {
       // This will always be initialised at startup; contains the logic code
       // behind asking questions
-      QuestionTree questionTree = new QuestionTree();
+      QuestionBank = new QuestionBank();
       Drugs[0] = new Drug(
         "GEFETINIB",
         new int[] {3, 9, 5, 3, 1, 1, 1, 1}
