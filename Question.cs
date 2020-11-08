@@ -5,6 +5,7 @@ namespace DrugFinder
   class Question
   {
     public string Title { get; set; }
+    public string[] ResponseText { get; set; }
     public int[,] ResponseScores { get; set; }
     public int Response { get; set; }
 
@@ -12,7 +13,7 @@ namespace DrugFinder
     // TODO: Check this against a specific property of the question
     public bool ValidateResponse(int response)
     {
-      if (response > 0 && response < 5)
+      if (response >= 0 && response < ResponseText.Length)
       {
         return true;
       }
@@ -22,22 +23,12 @@ namespace DrugFinder
       }
     }
 
-    // This method exports the scores
+    // This method exports the correct scores, of the response that was selected
     public void ExportScores()
     {
-      if (Response == 0)
+      for (int i=0; i<Program.PatientVariableTotals.Length; i++)
       {
-        for (int i=0; i<8; i++)
-        {
-          Program.PatientVariableTotals[i] += ResponseScores[0,i];
-        }
-      } 
-      else if (Response == 1) 
-      {
-        for (int i=0; i<8; i++)
-        {
-          Program.PatientVariableTotals[i] += ResponseScores[1,i];
-        }      
+        Program.PatientVariableTotals[i] += ResponseScores[Response,i];
       }
     }
   }
