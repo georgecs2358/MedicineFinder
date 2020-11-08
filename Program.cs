@@ -115,13 +115,10 @@ namespace DrugFinder
             PatientVariableTotals[j] - Drugs[i].Scores[j]
           );
         }
-        // drugScores[i] += Math.Abs(PatientVariableTotals[0] -Drugs[i].Scores[0]);
-        // drugScores[i] += Math.Abs(PatientVariableTotals[1] -Drugs[i].Scores[1]);
-        // drugScores[i] += Math.Abs(PatientVariableTotals[2] -Drugs[i].Scores[2]);
-        // drugScores[i] += Math.Abs(PatientVariableTotals[3] -Drugs[i].Scores[3]);
         Console.WriteLine("Drug {0} match score: " + drugScores[i], i);
       }
       Console.WriteLine("\n");
+      
       // A smaller score is better, this means a drug's profile closely matches 
       // the profile generated from the questions
       // TODO: This needs expanding to a sort algorithm, and to consider if
