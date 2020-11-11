@@ -30,6 +30,10 @@ namespace DrugFinder
     {
       Initialise();
 
+      Console.Write("\n---------------------------------------------------\n");
+      Console.WriteLine("MedicineFinder");
+      Console.WriteLine("A program which helps doctors decide which treatment to prescribe.");
+      Console.Write("\n---------------------------------------------------");
       while (NumberAsked < QuestionBank.Questions.Count)
       {
         Console.WriteLine("\n");
